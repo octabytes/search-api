@@ -1,0 +1,23 @@
+{
+  "name": "search-api",
+  "version": "1.0.0",
+  "description": "Search API in nodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octabytes/search-api.git"
+  },
+  "author": "OctaByte",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/octabytes/search-api/issues"
+  },
+  "homepage": "https://github.com/octabytes/search-api#readme",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
+  }
+}
