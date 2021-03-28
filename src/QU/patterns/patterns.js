@@ -1,7 +1,9 @@
 const Collection = require("./schema/collection");
+const EmptySpace = require("./schema/empty_space");
 const Filter = require("./schema/filter");
 const QuranSpecialFormat = require("./schema/quran_special_format");
 const QuranSurahs = require("./schema/quran_surahs");
+const Range = require("./schema/range");
 
 const patterns = [
   // Quran
@@ -24,6 +26,10 @@ const patterns = [
 
   // Quran Special Case: 2:1
   [QuranSpecialFormat],
+
+  // RANGE
+  // quran surah 2 ayah from 1 to 5
+  [Collection, Filter, Range],
 ];
 
 module.exports = patterns;

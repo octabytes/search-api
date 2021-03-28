@@ -98,6 +98,10 @@ const NLP = (query) => {
     if (result.type === "quran_surahs") {
       transform.collection = "quran";
     }
+
+    if (result.type === "range") {
+      transform.range = result.value;
+    }
   }
 
   // Check if there is two filters and the same field value

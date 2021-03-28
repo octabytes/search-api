@@ -80,8 +80,19 @@ const isNumber = (word) => {
   return false;
 };
 
-module.exports.inPossibleWords = inPossibleWords;
-module.exports.arrayDiff = arrayDiff;
-module.exports.removeSpecialWords = removeSpecialWords;
-module.exports.removeExtraWhiteSpaces = removeExtraWhiteSpaces;
-module.exports.isNumber = isNumber;
+const removeArrItem = (arr, value) => {
+  var index = arr.indexOf(value);
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  return arr;
+};
+
+module.exports = {
+  inPossibleWords,
+  arrayDiff,
+  removeSpecialWords,
+  removeExtraWhiteSpaces,
+  isNumber,
+  removeArrItem,
+};
