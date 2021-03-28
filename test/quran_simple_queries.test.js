@@ -259,4 +259,16 @@ describe("Simple Queries", () => {
     result.filters[1].field.should.equal("ayah");
     result.filters[1].value.should.equal(1);
   });
+
+  it("should not be a same filters of surah", () => {
+    const result = NLP("quran surah 2 surah 2");
+
+    result.confidence.should.be.lessThan(0.5);
+  });
+
+  it("should not be a same filters of ayah", () => {
+    const result = NLP("quran ayah 2 ayah 2");
+
+    result.confidence.should.be.lessThan(0.5);
+  });
 });

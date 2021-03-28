@@ -100,6 +100,19 @@ const NLP = (query) => {
     }
   }
 
+  // Check if there is two filters and the same field value
+  // then this is not right processing return 0 confidence
+  if (transform.filters && transform.filters.length > 1) {
+    const field1 = transform.filters[0].field;
+    const field2 = transform.filters[1].field;
+    if (
+      (field1 === "surah" && field2 === "surah") ||
+      (field1 === "ayah" && field2 === "ayah")
+    ) {
+      return { score: 0, confidence: 0 };
+    }
+  }
+
   // Re-arrange the filters surah always must be first
   if (transform.filters && transform.filters.length > 1) {
     if (transform.filters[0].field !== "surah") {
@@ -123,6 +136,14 @@ const NLP = (query) => {
       } else if (transform.filters[0].field === "surah") {
         transform.collection = "quran";
       }
+    }
+  }
+
+  // If collection is Quran and there is more then 2 filters
+  // then this is not right processing return 0 confidence
+  if (transform.collection === "quran") {
+    if (transform.filters && transform.filters.length > 2) {
+      return { score: 0, confidence: 0 };
     }
   }
 
