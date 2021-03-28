@@ -1,8 +1,18 @@
+const sw = require("stopword");
+const { arrayDiff, removeSpecialWords } = require("../../utils");
+const { removeExtraWhiteSpaces } = require("../../utils/utils");
 const patterns = require("../patterns");
+
+const englishStopWords = arrayDiff(sw.en, ["from", "to"]);
+const specialWords = ["#", "number", "num", "no.", "no"];
 
 const NLP = (query) => {
   query = query.toLowerCase();
-  const tokens = query.split(" ");
+  query = removeSpecialWords(query, specialWords);
+  query = removeExtraWhiteSpaces(query);
+
+  let tokens = query.split(" ");
+  tokens = sw.removeStopwords(tokens, englishStopWords);
 
   const results = [];
 
@@ -22,6 +32,10 @@ const NLP = (query) => {
         );
       } else {
         word = tokens[lastIndex + patternPart.require_words];
+      }
+
+      if (word === undefined || word.length === 0) {
+        break;
       }
 
       const result = patternPart.exec(word);
@@ -67,6 +81,22 @@ const NLP = (query) => {
         transform.filters = [];
       }
       transform.filters.push(result.value);
+    }
+
+    if (result.type === "quran_special_format") {
+      transform.filters = result.value;
+    }
+
+    if (result.type === "quran_surahs") {
+      transform.collection = "quran";
+    }
+  }
+
+  // Re-arrange the filters surah always must be first
+  if (transform.filters && transform.filters.length > 1) {
+    if (transform.filters[0].field !== "surah") {
+      const tempFilters = transform.filters;
+      transform.filters = [tempFilters[1], tempFilters[0]];
     }
   }
 

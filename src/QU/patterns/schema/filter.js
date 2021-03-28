@@ -1,14 +1,33 @@
-const possibleWords = ["surah", "surat", "surahs", "ayah", "ayat", "ayahs"];
+const { inPossibleWords } = require("../../../utils");
+const { isNumber } = require("../../../utils/utils");
+
+const possibleWords = {
+  surah: ["surah", "surat", "surahs"],
+  ayah: ["ayah", "ayat", "ayahs"],
+};
 
 const exec = (words) => {
   let filterField, filterValue;
 
-  if (possibleWords.includes(words[0])) {
-    filterField = words[0];
-  }
+  // Case first: when first word is field name and second is number
 
-  if (!isNaN(words[1])) {
-    filterValue = parseInt(words[1]);
+  if (!isNumber(words[0])) {
+    if ((rootWord = inPossibleWords(words[0], possibleWords))) {
+      filterField = rootWord;
+    }
+
+    if ((num = isNumber(words[1]))) {
+      filterValue = num;
+    }
+  } else {
+    // Case Second: when first word is number and second is field name
+    if ((rootWord = inPossibleWords(words[1], possibleWords))) {
+      filterField = rootWord;
+    }
+
+    if ((num = isNumber(words[0]))) {
+      filterValue = num;
+    }
   }
 
   if (filterField && filterValue) {

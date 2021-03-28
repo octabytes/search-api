@@ -19,5 +19,9 @@
   "devDependencies": {
     "chai": "^4.3.4",
     "mocha": "^8.3.2"
+  },
+  "dependencies": {
+    "replaceall": "^0.1.6",
+    "stopword": "^1.0.7"
   }
 }

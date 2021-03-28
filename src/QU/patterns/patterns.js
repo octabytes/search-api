@@ -1,12 +1,29 @@
 const Collection = require("./schema/collection");
 const Filter = require("./schema/filter");
+const QuranSpecialFormat = require("./schema/quran_special_format");
+const QuranSurahs = require("./schema/quran_surahs");
 
 const patterns = [
+  // Quran
+  [Collection],
+
   // Quran surah 2 ayah 1
   [Collection, Filter, Filter],
 
+  // Quran Surahs
+  [Collection, QuranSurahs],
+
+  // Surahs
+  [QuranSurahs],
+
   // Surah 2 ayah 1
   [Filter, Filter],
+
+  // Quran Special Case: Quran 2:1
+  [Collection, QuranSpecialFormat],
+
+  // Quran Special Case: 2:1
+  [QuranSpecialFormat],
 ];
 
 module.exports = patterns;
@@ -34,6 +51,7 @@ module.exports = patterns;
 // user_query = "something"
 // user_query = "kuran"
 // user_query = "kuran surt 2 ayt 1"
+
 // user_query = "surah 2 first 5 ayah"
 // user_query = "surah 2 first 5 ayahs"
 // user_query = "first 5 ayahs of surah 2"
