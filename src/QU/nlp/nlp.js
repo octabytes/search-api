@@ -1,6 +1,6 @@
 const patterns = require("../patterns");
 
-const transformer = (query) => {
+const NLP = (query) => {
   query = query.toLowerCase();
   const tokens = query.split(" ");
 
@@ -37,10 +37,16 @@ const transformer = (query) => {
       }
     }
 
+    const avgScore = score / maxScore;
+
     results.push({
-      score: score / maxScore,
+      score: avgScore,
       patternResults: patternResults,
     });
+
+    if (avgScore === 1) {
+      break;
+    }
   }
 
   const maxPattern = results.reduce((prev, current) =>
@@ -85,4 +91,4 @@ const transformer = (query) => {
   return transform;
 };
 
-module.exports = transformer;
+module.exports = NLP;

@@ -1,11 +1,11 @@
 const chai = require("chai");
-const transformer = require("../src/nlp/transformer");
+const NLP = require("../src/QU/nlp");
 
 const should = chai.should();
 
 describe("Simple Queries", () => {
   it("should pass `Quran surah 2 ayah 1`", () => {
-    const result = transformer("Quran surah 2 ayah 1");
+    const result = NLP("Quran surah 2 ayah 1");
 
     result.collection.should.equal("quran");
     result.filters.length.should.be.equal(2);
@@ -16,7 +16,7 @@ describe("Simple Queries", () => {
   });
 
   it("should pass `surah 2 ayah 1`", () => {
-    const result = transformer("surah 2 ayah 1");
+    const result = NLP("surah 2 ayah 1");
 
     result.collection.should.equal("quran");
     result.filters.length.should.be.equal(2);

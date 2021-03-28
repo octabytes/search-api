@@ -1,7 +1,9 @@
+const possibleWords = ["surah", "surat", "surahs", "ayah", "ayat", "ayahs"];
+
 const exec = (words) => {
   let filterField, filterValue;
 
-  if (words[0] === "surah" || words[0] === "ayah") {
+  if (possibleWords.includes(words[0])) {
     filterField = words[0];
   }
 

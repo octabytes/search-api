@@ -1,5 +1,5 @@
-const transformer = require("./src/nlp/transformer");
+const NLP = require("./src/QU/nlp");
 
-const result = transformer("surah 2 ayat 1");
+const result = NLP("surah 2 ayat 1");
 
 console.log(result);
