@@ -18,6 +18,7 @@ const NLP = (query) => {
 
   for (const pattern of patterns) {
     const maxScore = pattern.length;
+    let consumedWords = 0;
     let score = 0;
     let lastIndex = -1;
     const patternResults = [];
@@ -42,6 +43,7 @@ const NLP = (query) => {
 
       lastIndex += result.consume_words;
       score += result.score;
+      consumedWords += result.consume_words;
 
       if (result.fulfil) {
         patternResults.push({
@@ -52,24 +54,30 @@ const NLP = (query) => {
     }
 
     const avgScore = score / maxScore;
+    const tokenScore = consumedWords / tokens.length;
+    const confidence = (avgScore + tokenScore) / 2;
 
     results.push({
+      confidence: confidence,
       score: avgScore,
       patternResults: patternResults,
     });
 
-    if (avgScore === 1) {
+    if (confidence === 1) {
       break;
     }
   }
 
   const maxPattern = results.reduce((prev, current) =>
-    prev.score > current.score ? prev : current
+    prev.confidence > current.confidence ? prev : current
   );
 
   const patternResults = maxPattern.patternResults;
 
-  const transform = { score: maxPattern.score };
+  const transform = {
+    score: maxPattern.score,
+    confidence: maxPattern.confidence,
+  };
 
   for (const result of patternResults) {
     if (result.type === "collection") {

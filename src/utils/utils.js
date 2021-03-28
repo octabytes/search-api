@@ -1,11 +1,49 @@
 const replaceall = require("replaceall");
+const levenshtein = require("fast-levenshtein");
 const alphaNumeric = require("./alpha_numeric");
 
 const inPossibleWords = (word, possibleWords) => {
+  // Make sure word is not undefined
+  if (word === undefined) return false;
+
+  let wordsWithDistance = [];
+
   for (const key of Object.keys(possibleWords)) {
     if (possibleWords[key].includes(word)) {
-      return key;
+      return { value: key, score: 1 };
     }
+
+    // If word in not found in possible words then try it
+    // with levenshtein distance
+    for (const possibleWord of possibleWords[key]) {
+      const wordLen = possibleWord.length;
+      if (wordLen > 3) {
+        const distance = levenshtein.get(word, possibleWord);
+        if (wordLen <= 5 && distance === 1) {
+          wordsWithDistance.push({
+            value: key,
+            score: 1 / (distance + 1),
+          });
+        } else if (wordLen > 5 && distance === 2) {
+          wordsWithDistance.push({
+            value: key,
+            score: 1 / (distance + 0.5),
+          });
+        }
+      }
+    }
+  }
+
+  // If there is some words with distance
+  if (wordsWithDistance.length) {
+    const wordWithLowestDistance = wordsWithDistance.reduce((prev, current) =>
+      prev.score > current.score ? prev : current
+    );
+
+    return {
+      value: wordWithLowestDistance.value,
+      score: wordWithLowestDistance.score,
+    };
   }
 
   return false;

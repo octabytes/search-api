@@ -7,6 +7,6 @@
 
 const NLP = require("./src/QU/nlp");
 
-const result = NLP("kuran");
+const result = NLP("quran");
 
 console.log(result);

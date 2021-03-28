@@ -1,16 +1,22 @@
+const { inPossibleWords } = require("../../../utils");
+
+const possibleWords = {
+  quran: ["quran", "kuran", "qoran", "surahs"],
+};
+
 const exec = (word) => {
-  if (word === "quran") {
+  if ((collection = inPossibleWords(word, possibleWords))) {
     return {
       fulfil: true,
-      score: 1,
+      score: collection.score,
       consume_words: 1,
-      value: "quran",
+      value: collection.value,
     };
   } else {
     return {
       fulfil: false,
       score: 0,
-      consume_words: 1,
+      consume_words: 0,
     };
   }
 };

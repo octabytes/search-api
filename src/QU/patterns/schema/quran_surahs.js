@@ -18,7 +18,7 @@ const exec = (word) => {
     return {
       fulfil: false,
       score: 0,
-      consume_words: 1,
+      consume_words: 0,
     };
   }
 };

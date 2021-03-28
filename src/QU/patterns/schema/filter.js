@@ -8,12 +8,14 @@ const possibleWords = {
 
 const exec = (words) => {
   let filterField, filterValue;
+  let score = 0;
 
   // Case first: when first word is field name and second is number
 
   if (!isNumber(words[0])) {
     if ((rootWord = inPossibleWords(words[0], possibleWords))) {
-      filterField = rootWord;
+      filterField = rootWord.value;
+      score = rootWord.score;
     }
 
     if ((num = isNumber(words[1]))) {
@@ -22,7 +24,8 @@ const exec = (words) => {
   } else {
     // Case Second: when first word is number and second is field name
     if ((rootWord = inPossibleWords(words[1], possibleWords))) {
-      filterField = rootWord;
+      filterField = rootWord.value;
+      score = rootWord.score;
     }
 
     if ((num = isNumber(words[0]))) {
@@ -35,7 +38,7 @@ const exec = (words) => {
 
     return {
       fulfil: true,
-      score: 1,
+      score: score,
       consume_words: 2,
       value: value,
     };
@@ -43,7 +46,7 @@ const exec = (words) => {
     return {
       fulfil: false,
       score: 0,
-      consume_words: 2,
+      consume_words: 0,
     };
   }
 };
