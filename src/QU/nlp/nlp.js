@@ -102,6 +102,10 @@ const NLP = (query) => {
     if (result.type === "range") {
       transform.range = result.value;
     }
+
+    if (result.type === "limit") {
+      transform.limit = result.value;
+    }
   }
 
   // Check if there is two filters and the same field value

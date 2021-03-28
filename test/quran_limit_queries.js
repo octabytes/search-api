@@ -12,9 +12,9 @@ describe("Quran Limit Queries", () => {
     result.filters.length.should.be.equal(1);
     result.filters[0].field.should.equal("surah");
     result.filters[0].value.should.equal(2);
-    result.range.field.should.equal("ayah");
-    result.range.from.should.equal(1);
-    result.range.to.should.equal(5);
+    result.limit.field.should.equal("ayah");
+    result.limit.value.should.equal(5);
+    result.limit.direction.should.equal("start");
   });
 
   it("should pass `surah 2 first 5 ayahs`", () => {
@@ -25,9 +25,9 @@ describe("Quran Limit Queries", () => {
     result.filters.length.should.be.equal(1);
     result.filters[0].field.should.equal("surah");
     result.filters[0].value.should.equal(2);
-    result.range.field.should.equal("ayah");
-    result.range.from.should.equal(1);
-    result.range.to.should.equal(5);
+    result.limit.field.should.equal("ayah");
+    result.limit.value.should.equal(5);
+    result.limit.direction.should.equal("start");
   });
 
   it("should pass `first 5 ayahs of surah 2`", () => {
@@ -38,9 +38,9 @@ describe("Quran Limit Queries", () => {
     result.filters.length.should.be.equal(1);
     result.filters[0].field.should.equal("surah");
     result.filters[0].value.should.equal(2);
-    result.range.field.should.equal("ayah");
-    result.range.from.should.equal(1);
-    result.range.to.should.equal(5);
+    result.limit.field.should.equal("ayah");
+    result.limit.value.should.equal(5);
+    result.limit.direction.should.equal("start");
   });
 
   it("should pass `surah 2 last 5 ayahs`", () => {
@@ -51,9 +51,9 @@ describe("Quran Limit Queries", () => {
     result.filters.length.should.be.equal(1);
     result.filters[0].field.should.equal("surah");
     result.filters[0].value.should.equal(2);
-    result.range.field.should.equal("ayah");
-    result.range.from.should.equal(1);
-    result.range.to.should.equal(5);
+    result.limit.field.should.equal("ayah");
+    result.limit.value.should.equal(5);
+    result.limit.direction.should.equal("end");
   });
 
   it("should pass `last 5 ayahs of surah 2`", () => {
@@ -64,9 +64,9 @@ describe("Quran Limit Queries", () => {
     result.filters.length.should.be.equal(1);
     result.filters[0].field.should.equal("surah");
     result.filters[0].value.should.equal(2);
-    result.range.field.should.equal("ayah");
-    result.range.from.should.equal(1);
-    result.range.to.should.equal(5);
+    result.limit.field.should.equal("ayah");
+    result.limit.value.should.equal(5);
+    result.limit.direction.should.equal("end");
   });
 
   it("should pass `surah 2 first five ayahs`", () => {
@@ -77,9 +77,9 @@ describe("Quran Limit Queries", () => {
     result.filters.length.should.be.equal(1);
     result.filters[0].field.should.equal("surah");
     result.filters[0].value.should.equal(2);
-    result.range.field.should.equal("ayah");
-    result.range.from.should.equal(1);
-    result.range.to.should.equal(5);
+    result.limit.field.should.equal("ayah");
+    result.limit.value.should.equal(5);
+    result.limit.direction.should.equal("start");
   });
 
   it("should pass `surah 2 last five ayahs`", () => {
@@ -90,9 +90,9 @@ describe("Quran Limit Queries", () => {
     result.filters.length.should.be.equal(1);
     result.filters[0].field.should.equal("surah");
     result.filters[0].value.should.equal(2);
-    result.range.field.should.equal("ayah");
-    result.range.from.should.equal(1);
-    result.range.to.should.equal(5);
+    result.limit.field.should.equal("ayah");
+    result.limit.value.should.equal(5);
+    result.limit.direction.should.equal("end");
   });
 
   it("should pass `surah baqara last 5 ayahs`", () => {
@@ -103,9 +103,9 @@ describe("Quran Limit Queries", () => {
     result.filters.length.should.be.equal(1);
     result.filters[0].field.should.equal("surah");
     result.filters[0].value.should.equal(2);
-    result.range.field.should.equal("ayah");
-    result.range.from.should.equal(1);
-    result.range.to.should.equal(5);
+    result.limit.field.should.equal("ayah");
+    result.limit.value.should.equal(5);
+    result.limit.direction.should.equal("end");
   });
 
   it("should pass `surah baqara first 5 ayahs`", () => {
@@ -116,9 +116,9 @@ describe("Quran Limit Queries", () => {
     result.filters.length.should.be.equal(1);
     result.filters[0].field.should.equal("surah");
     result.filters[0].value.should.equal(2);
-    result.range.field.should.equal("ayah");
-    result.range.from.should.equal(1);
-    result.range.to.should.equal(5);
+    result.limit.field.should.equal("ayah");
+    result.limit.value.should.equal(5);
+    result.limit.direction.should.equal("start");
   });
 
   it("should pass `quran surah 2 last ayah`", () => {
@@ -129,9 +129,9 @@ describe("Quran Limit Queries", () => {
     result.filters.length.should.be.equal(1);
     result.filters[0].field.should.equal("surah");
     result.filters[0].value.should.equal(2);
-    result.range.field.should.equal("ayah");
-    result.range.from.should.equal(1);
-    result.range.to.should.equal(5);
+    result.limit.field.should.equal("ayah");
+    result.limit.value.should.equal(1);
+    result.limit.direction.should.equal("end");
   });
 
   it("should pass `quran surah 2 first ayah`", () => {
@@ -139,11 +139,10 @@ describe("Quran Limit Queries", () => {
 
     result.confidence.should.be.greaterThan(0.8);
     result.collection.should.equal("quran");
-    result.filters.length.should.be.equal(1);
+    result.filters.length.should.be.equal(2);
     result.filters[0].field.should.equal("surah");
     result.filters[0].value.should.equal(2);
-    result.range.field.should.equal("ayah");
-    result.range.from.should.equal(1);
-    result.range.to.should.equal(5);
+    result.filters[1].field.should.equal("ayah");
+    result.filters[1].value.should.equal(1);
   });
 });

@@ -1,6 +1,7 @@
 const Collection = require("./schema/collection");
 const EmptySpace = require("./schema/empty_space");
 const Filter = require("./schema/filter");
+const Limit = require("./schema/limit");
 const QuranSpecialFormat = require("./schema/quran_special_format");
 const QuranSurahs = require("./schema/quran_surahs");
 const Range = require("./schema/range");
@@ -30,6 +31,12 @@ const patterns = [
   // RANGE
   // quran surah 2 ayah from 1 to 5
   [Collection, Filter, Range],
+
+  // LIMIT
+  // surah 2 first 5 ayah
+  [Collection, Filter, Limit],
+  // first 5 ayahs of surah 2
+  [Limit, Filter],
 ];
 
 module.exports = patterns;
@@ -63,6 +70,7 @@ module.exports = patterns;
 // user_query = "surah 2 start from 1 end 5"
 // user_query = "surah 2 start 1 end 5"
 // user_query = "surah 2 start from 1 to end 5"
+
 // user_query = "surah 2 first 5 ayah"
 // user_query = "surah 2 first 5 ayahs"
 // user_query = "first 5 ayahs of surah 2"
