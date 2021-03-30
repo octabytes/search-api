@@ -72,10 +72,10 @@ const exec = (words) => {
   }
 };
 
-const Filter = {
+const QuranFilter = {
   type: "filter",
   require_words: 2,
   exec: exec,
 };
 
-module.exports = Filter;
+module.exports = QuranFilter;

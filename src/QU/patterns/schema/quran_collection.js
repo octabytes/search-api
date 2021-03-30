@@ -21,10 +21,10 @@ const exec = (word) => {
   }
 };
 
-const Collection = {
+const QuranCollection = {
   type: "collection",
   require_words: 1,
   exec: exec,
 };
 
-module.exports = Collection;
+module.exports = QuranCollection;

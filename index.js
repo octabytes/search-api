@@ -1,15 +1,15 @@
-// user_query = "surah baqara ayah 1"
-// user_query = "surah baqara last 5 ayahs"
-// user_query = "surah baqara first 5 ayahs"
-// user_query = "surah al-baqarah ayat 1"
-// user_query = "surah baqra ayat 1"
-// user_query = "surah-al-baqarah ayah 1"
-// user_query = "al-baqarah ayah 1"
-// user_query = "surat-ul-baqarah ayah 1"
-// user_query = "surah al-baqarah ayah from 1 to 5"
+// user_query = "sahih bukhari hadith 1"
+// user_query = "sahih bukhari hadees 1"
+// user_query = "sahih bukhari hadees number 1"
+// user_query = "sahih bukhari"
+// user_query = "sahih bukhari hadith"
+// user_query = "bukhari 123"
+// user_query = "bukhari number 123"
+// user_query = "bukhari #123"
+// user_query = "bukhari number #123"
 
 const NLP = require("./src/QU/nlp");
 
-const result = NLP("surah al-baqarah ayah from 1 to 5");
+const result = NLP("bukhari number #123");
 
 console.log(result);
