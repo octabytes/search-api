@@ -11,6 +11,12 @@ const NLP = (query) => {
   query = removeSpecialWords(query, specialWords);
   query = removeExtraWhiteSpaces(query);
 
+  // Special Quran surah words replace
+  query = query
+    .replace("-al-", " al-")
+    .replace("-ul-", " al-")
+    .replace("al ", " al-");
+
   let tokens = query.split(" ");
   tokens = sw.removeStopwords(tokens, englishStopWords);
 
@@ -55,7 +61,13 @@ const NLP = (query) => {
 
     const avgScore = score / maxScore;
     const tokenScore = consumedWords / tokens.length;
-    const confidence = (avgScore + tokenScore) / 2;
+    let confidence = 0;
+
+    if (avgScore < 0.3 || tokenScore < 0.3) {
+      confidence = 0;
+    } else {
+      confidence = (avgScore + tokenScore) / 2;
+    }
 
     results.push({
       confidence: confidence,

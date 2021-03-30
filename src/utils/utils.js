@@ -1,6 +1,7 @@
 const replaceall = require("replaceall");
 const levenshtein = require("fast-levenshtein");
 const alphaNumeric = require("./alpha_numeric");
+const surahNames = require("./surah_names");
 
 const inPossibleWords = (word, possibleWords) => {
   // Make sure word is not undefined
@@ -49,6 +50,14 @@ const inPossibleWords = (word, possibleWords) => {
   return false;
 };
 
+const isSurahName = (word) => {
+  const w = inPossibleWords(word, surahNames);
+  return {
+    value: parseInt(w.value),
+    score: w.score,
+  };
+};
+
 const arrayDiff = (arr1, arr2) => {
   return arr1.filter((item) => arr2.indexOf(item) < 0);
 };
@@ -90,6 +99,7 @@ const removeArrItem = (arr, value) => {
 
 module.exports = {
   inPossibleWords,
+  isSurahName,
   arrayDiff,
   removeSpecialWords,
   removeExtraWhiteSpaces,

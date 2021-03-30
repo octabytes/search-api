@@ -88,6 +88,7 @@ module.exports = patterns;
 // user_query = "al-baqarah ayah 1"
 // user_query = "surat-ul-baqarah ayah 1"
 // user_query = "surah al-baqarah ayah from 1 to 5
+
 // user_query = "sahih bukhari hadith 1"
 // user_query = "sahih bukhari hadees 1"
 // user_query = "sahih bukhari hadees number 1"

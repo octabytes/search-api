@@ -237,7 +237,7 @@ describe("Simple Queries", () => {
   it("should pass `something`", () => {
     const result = NLP("something");
 
-    result.confidence.should.be.lessThan(0.5);
+    result.confidence.should.be.lessThan(0.6);
     result.score.should.equal(0);
   });
 
@@ -270,5 +270,77 @@ describe("Simple Queries", () => {
     const result = NLP("quran ayah 2 ayah 2");
 
     result.confidence.should.be.lessThan(0.5);
+  });
+
+  it("should pass `surah baqara ayah 1`", () => {
+    const result = NLP("surah baqara ayah 1");
+
+    result.confidence.should.be.greaterThan(0.8);
+    result.collection.should.equal("quran");
+    result.filters.length.should.be.equal(2);
+    result.filters[0].field.should.equal("surah");
+    result.filters[0].value.should.equal(2);
+    result.filters[1].field.should.equal("ayah");
+    result.filters[1].value.should.equal(1);
+  });
+
+  it("should pass `surah al-baqarah ayat 1`", () => {
+    const result = NLP("surah al-baqarah ayat 1");
+
+    result.confidence.should.be.greaterThan(0.8);
+    result.collection.should.equal("quran");
+    result.filters.length.should.be.equal(2);
+    result.filters[0].field.should.equal("surah");
+    result.filters[0].value.should.equal(2);
+    result.filters[1].field.should.equal("ayah");
+    result.filters[1].value.should.equal(1);
+  });
+
+  it("should pass `surah baqra ayat 1`", () => {
+    const result = NLP("surah baqra ayat 1");
+
+    result.confidence.should.be.greaterThan(0.8);
+    result.collection.should.equal("quran");
+    result.filters.length.should.be.equal(2);
+    result.filters[0].field.should.equal("surah");
+    result.filters[0].value.should.equal(2);
+    result.filters[1].field.should.equal("ayah");
+    result.filters[1].value.should.equal(1);
+  });
+
+  it("should pass `surah-al-baqarah ayah 1`", () => {
+    const result = NLP("surah-al-baqarah ayah 1");
+
+    result.confidence.should.be.greaterThan(0.8);
+    result.collection.should.equal("quran");
+    result.filters.length.should.be.equal(2);
+    result.filters[0].field.should.equal("surah");
+    result.filters[0].value.should.equal(2);
+    result.filters[1].field.should.equal("ayah");
+    result.filters[1].value.should.equal(1);
+  });
+
+  it("should pass `al-baqarah ayah 1`", () => {
+    const result = NLP("al-baqarah ayah 1");
+
+    result.confidence.should.be.greaterThan(0.8);
+    result.collection.should.equal("quran");
+    result.filters.length.should.be.equal(2);
+    result.filters[0].field.should.equal("surah");
+    result.filters[0].value.should.equal(2);
+    result.filters[1].field.should.equal("ayah");
+    result.filters[1].value.should.equal(1);
+  });
+
+  it("should pass `surat-ul-baqarah ayah 1`", () => {
+    const result = NLP("surat-ul-baqarah ayah 1");
+
+    result.confidence.should.be.greaterThan(0.8);
+    result.collection.should.equal("quran");
+    result.filters.length.should.be.equal(2);
+    result.filters[0].field.should.equal("surah");
+    result.filters[0].value.should.equal(2);
+    result.filters[1].field.should.equal("ayah");
+    result.filters[1].value.should.equal(1);
   });
 });
