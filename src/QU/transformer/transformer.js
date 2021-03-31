@@ -8,7 +8,10 @@ const transformer = async (query) => {
   const result = NLP(query);
 
   if (result.confidence < 0.8) {
-    return;
+    return {
+      type: "not-confident",
+      url: result,
+    };
   }
 
   let url, responseType;

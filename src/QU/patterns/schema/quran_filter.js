@@ -3,7 +3,7 @@ const { isNumber, isSurahName } = require("../../../utils/utils");
 
 const possibleWords = {
   surah: ["surah", "surat", "surahs"],
-  ayah: ["ayah", "ayat", "ayahs"],
+  ayah: ["ayah", "ayat", "aayat", "ayahs"],
 };
 
 const exec = (words) => {

@@ -33,6 +33,24 @@ const exec = (words) => {
           }
         }
       }
+    } else {
+      // case: surah baqrah aayat number 235 to 270
+      // Get last three words
+      words = words.slice(1);
+
+      // Check first and third word is number
+      if ((fromNum = isNumber(words[0])) && (toNum = isNumber(words[2]))) {
+        return {
+          fulfil: true,
+          score: 1,
+          consume_words: consume_words,
+          value: {
+            field: "ayah",
+            from: fromNum,
+            to: toNum,
+          },
+        };
+      }
     }
   } else if (words.length == 3) {
     if ((fromNum = isNumber(words[0]))) {

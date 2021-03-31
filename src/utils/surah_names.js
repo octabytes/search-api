@@ -17,6 +17,7 @@ const surahNames = {
     "baqarah",
     "baqara",
     "baqra",
+    "baqrah",
   ],
   3: ["al-imran", "imran", "alay-imran"],
   4: [
